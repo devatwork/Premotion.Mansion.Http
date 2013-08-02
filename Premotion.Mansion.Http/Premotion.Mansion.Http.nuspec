@@ -6,8 +6,8 @@
 		<title>$title$</title>
 		<authors>$author$</authors>
 		<owners>$author$</owners>
-		<licenseUrl>https://github.com/organizations/PremotionSoftwareSolutions/Premotion.Mansion.Http/licence.txt</licenseUrl>
-		<projectUrl>https://github.com/organizations/PremotionSoftwareSolutions/Premotion.Mansion.Http/</projectUrl>
+		<licenseUrl>https://github.com/PremotionSoftwareSolutions/Premotion.Mansion.Http/blob/master/licence.txt</licenseUrl>
+		<projectUrl>https://github.com/PremotionSoftwareSolutions/Premotion.Mansion.Http/</projectUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>$description$</description>
 		<releaseNotes>Initial release</releaseNotes>
