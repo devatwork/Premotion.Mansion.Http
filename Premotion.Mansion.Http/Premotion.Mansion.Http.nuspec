@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>Initial release</releaseNotes>
-    <copyright>Copyright 2013</copyright>
+    <copyright>Copyright (c) 2013 Bert Willems and contributors</copyright>
     <tags>Http Async Streaming</tags>
   </metadata>
 </package>
