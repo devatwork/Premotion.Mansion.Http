@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Premotion.Mansion.Http", "Premotion.Mansion.Http\Premotion.Mansion.Http.csproj", "{F918113C-4B6F-4429-AD1E-4D31505C638F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Premotion.Mansion.Http.Tests", "Premotion.Mansion.Http.Tests\Premotion.Mansion.Http.Tests.csproj", "{8AE993A9-2158-437D-A6B6-96CE8D8E733B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F918113C-4B6F-4429-AD1E-4D31505C638F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F918113C-4B6F-4429-AD1E-4D31505C638F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F918113C-4B6F-4429-AD1E-4D31505C638F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F918113C-4B6F-4429-AD1E-4D31505C638F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AE993A9-2158-437D-A6B6-96CE8D8E733B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AE993A9-2158-437D-A6B6-96CE8D8E733B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AE993A9-2158-437D-A6B6-96CE8D8E733B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AE993A9-2158-437D-A6B6-96CE8D8E733B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
