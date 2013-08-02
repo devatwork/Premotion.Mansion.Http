@@ -1,17 +1,22 @@
 <?xml version="1.0"?>
 <package >
-  <metadata>
-    <id>$id$</id>
-    <version>$version$</version>
-    <title>$title$</title>
-    <authors>$author$</authors>
-    <owners>$author$</owners>
-    <licenseUrl>https://github.com/organizations/PremotionSoftwareSolutions/Premotion.Mansion.Http/licence.txt</licenseUrl>
-    <projectUrl>https://github.com/organizations/PremotionSoftwareSolutions/Premotion.Mansion.Http/</projectUrl>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>$description$</description>
-    <releaseNotes>Initial release</releaseNotes>
-    <copyright>Copyright (c) 2013 Bert Willems and contributors</copyright>
-    <tags>Http Async Streaming</tags>
-  </metadata>
+	<metadata>
+		<id>$id$</id>
+		<version>$version$</version>
+		<title>$title$</title>
+		<authors>$author$</authors>
+		<owners>$author$</owners>
+		<licenseUrl>https://github.com/organizations/PremotionSoftwareSolutions/Premotion.Mansion.Http/licence.txt</licenseUrl>
+		<projectUrl>https://github.com/organizations/PremotionSoftwareSolutions/Premotion.Mansion.Http/</projectUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>$description$</description>
+		<releaseNotes>Initial release</releaseNotes>
+		<copyright>Copyright (c) 2013 Bert Willems and contributors</copyright>
+		<tags>Http Async Streaming</tags>
+		<frameworkAssemblies>
+			<frameworkAssembly assemblyName="System" targetFramework="net45" />
+			<frameworkAssembly assemblyName="System.Core" targetFramework="net45" />
+			<frameworkAssembly assemblyName="System.Net.Http" targetFramework="net45" />
+		</frameworkAssemblies>
+	</metadata>
 </package>
