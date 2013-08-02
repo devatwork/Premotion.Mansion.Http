@@ -144,9 +144,6 @@ namespace Premotion.Mansion.Http.Streaming
 				// notify all the observers an unhandled error has occurred
 				foreach (var observer in observers)
 					observer.OnError(exception);
-
-				// unknown error type, rethrow
-				throw;
 			}
 		}
 		/// <summary>
