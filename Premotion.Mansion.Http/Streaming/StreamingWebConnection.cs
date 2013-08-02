@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Premotion.Mansion.Http.Patterns;
 
@@ -75,6 +76,9 @@ namespace Premotion.Mansion.Http.Streaming
 
 			// set the value
 			this.client = client;
+
+			// set the timespan to infinit since we will be streaming
+			client.Timeout = Timeout.InfiniteTimeSpan;
 		}
 		#endregion
 		#region Connection Methods
