@@ -18,5 +18,10 @@
 			<frameworkAssembly assemblyName="System.Core" targetFramework="net45" />
 			<frameworkAssembly assemblyName="System.Net.Http" targetFramework="net45" />
 		</frameworkAssemblies>
+		<dependencies>
+			<dependency id="Rx-Core" />
+			<dependency id="Rx-Interfaces" />
+			<dependency id="Rx-Linq" />
+		</dependencies>
 	</metadata>
 </package>
