@@ -13,7 +13,7 @@ namespace Premotion.Mansion.Http.Streaming
 	/// Handles the connection details for connection for a Twitter streaming API.
 	/// </summary>
 	/// <typeparam name="T">The type of object streamed from this connection.</typeparam>
-	public abstract class StreamingWebConnection<T> : DisposableBase
+	public abstract class StreamingWebConnection<T> : DisposableBase where T : class
 	{
 		#region Constructors
 		/// <summary>
@@ -66,11 +66,18 @@ namespace Premotion.Mansion.Http.Streaming
 							// create the tweet
 							var token = Read(textReader);
 
+							// if no token was returned assume there is no more data left in the stream
+							if (token == null)
+								break;
+
 							// emit next tweet to the observers
 							subject.OnNext(token);
 						}
 					}
 				}
+
+				// notify the observers we are done
+				subject.OnCompleted();
 			}
 			catch (Exception exception)
 			{
@@ -79,18 +86,7 @@ namespace Premotion.Mansion.Http.Streaming
 					return;
 
 				// check if this is a recoverable error
-				if (TryHandle(exception, () => {
-					// check if the object is not disposed yet
-					if (IsDisposed)
-					{
-						return Task.Run(() => {
-							// noop
-						});
-					}
-
-					// try to connect
-					return Connect(request);
-				}))
+				if (TryHandle(exception, () => Connect(request)))
 					return;
 
 				// notify all the observers an unhandled error has occurred
@@ -109,7 +105,7 @@ namespace Premotion.Mansion.Http.Streaming
 		/// Reads a <typeparamref name="T"/> from the given <paramref name="reader"/>.
 		/// </summary>
 		/// <param name="reader">The <see cref="TextReader"/> from which to read the token.</param>
-		/// <returns>Returns the parsed <typeparamref name="T"/>.</returns>
+		/// <returns>Returns the parsed <typeparamref name="T"/> or null if there are no more <typeparamref name="T"/>s in the stream.</returns>
 		protected abstract T Read(TextReader reader);
 		/// <summary>
 		/// Tries the handle the given <paramref name="exception"/>.
