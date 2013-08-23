@@ -9,7 +9,7 @@ namespace Premotion.Mansion.Http.ExceptionHandlers
 	/// </summary>
 	public class SocketExceptionHandler : ExceptionHandler
 	{
-		#region Constructors
+		private readonly BackoffStrategy backoffStrategy;
 		/// <summary>
 		/// Creates a exception handler which handles <see cref="SocketException"/>s.
 		/// </summary>
@@ -23,8 +23,6 @@ namespace Premotion.Mansion.Http.ExceptionHandlers
 			// set values
 			this.backoffStrategy = backoffStrategy;
 		}
-		#endregion
-		#region ExceptionHandler Members
 		/// <summary>
 		/// Tries the handle the given <paramref name="exception"/>.
 		/// </summary>
@@ -74,9 +72,5 @@ namespace Premotion.Mansion.Http.ExceptionHandlers
 
 			backoffStrategy.Dispose();
 		}
-		#endregion
-		#region Private Fields
-		private readonly BackoffStrategy backoffStrategy;
-		#endregion
 	}
 }

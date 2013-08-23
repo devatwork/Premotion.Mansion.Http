@@ -8,7 +8,9 @@ namespace Premotion.Mansion.Http.BackoffStrategies
 	/// </summary>
 	public class ExponentialBackoffStrategy : TimeoutBackoffStrategy
 	{
-		#region Constructors
+		private readonly int maxRetryDelay;
+		private readonly int retryDelay;
+		private int currentTimeout;
 		/// <summary>
 		/// Constructs a linear backoff strategy.
 		/// </summary>
@@ -20,8 +22,6 @@ namespace Premotion.Mansion.Http.BackoffStrategies
 			this.retryDelay = retryDelay;
 			this.maxRetryDelay = maxRetryDelay;
 		}
-		#endregion
-		#region BackoffStrategy Members
 		/// <summary>
 		/// Sets a <see cref="Timer"/>.
 		/// </summary>
@@ -48,11 +48,5 @@ namespace Premotion.Mansion.Http.BackoffStrategies
 			// reset the current timeout
 			currentTimeout = retryDelay;
 		}
-		#endregion
-		#region Private Fields
-		private int currentTimeout;
-		private readonly int retryDelay;
-		private readonly int maxRetryDelay;
-		#endregion
 	}
 }

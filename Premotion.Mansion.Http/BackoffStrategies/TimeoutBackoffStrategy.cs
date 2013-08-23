@@ -9,7 +9,7 @@ namespace Premotion.Mansion.Http.BackoffStrategies
 	/// </summary>
 	public abstract class TimeoutBackoffStrategy : BackoffStrategy
 	{
-		#region BackoffStrategy Members
+		private Timer timer;
 		/// <summary>
 		/// Retries to execute the operation.
 		/// </summary>
@@ -70,9 +70,5 @@ namespace Premotion.Mansion.Http.BackoffStrategies
 			if (timer != null)
 				timer.Dispose();
 		}
-		#endregion
-		#region Private Fields
-		private Timer timer;
-		#endregion
 	}
 }

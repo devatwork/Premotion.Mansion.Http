@@ -15,7 +15,8 @@ namespace Premotion.Mansion.Http.Streaming
 	/// <typeparam name="T">The type of object streamed from this connection.</typeparam>
 	public abstract class StreamingWebConnection<T> : DisposableBase where T : class
 	{
-		#region Constructors
+		private readonly HttpClient client;
+		private readonly Subject<T> subject = new Subject<T>();
 		/// <summary>
 		/// Constructs a new <see cref="StreamingWebConnection{T}"/> using the given <paramref name="client"/>.
 		/// </summary>
@@ -33,8 +34,13 @@ namespace Premotion.Mansion.Http.Streaming
 			// set the timespan to infinit since we will be streaming
 			client.Timeout = Timeout.InfiniteTimeSpan;
 		}
-		#endregion
-		#region Connection Methods
+		/// <summary>
+		/// Gets an <see cref="IObservable{T}"/> of <typeparamref name="T"/>.
+		/// </summary>
+		public IObservable<T> Stream
+		{
+			get { return subject.AsObservable(); }
+		}
 		/// <summary>
 		/// Connects to the stream.
 		/// </summary>
@@ -99,8 +105,6 @@ namespace Premotion.Mansion.Http.Streaming
 		protected virtual void Connected()
 		{
 		}
-		#endregion
-		#region Stream Methods
 		/// <summary>
 		/// Reads a <typeparamref name="T"/> from the given <paramref name="reader"/>.
 		/// </summary>
@@ -114,8 +118,6 @@ namespace Premotion.Mansion.Http.Streaming
 		/// <param name="reconnect">A callback invoked when a reconnection attempt can be made.</param>
 		/// <returns>Returns true if the error is handled, otherwise false.</returns>
 		protected abstract bool TryHandle(Exception exception, Func<Task> reconnect);
-		#endregion
-		#region DisposableBase Members
 		/// <summary>
 		/// Dispose resources. Override this method in derived classes. Unmanaged resources should always be released
 		/// when this method is called. Managed resources may only be disposed of if disposeManagedResources is true.
@@ -134,19 +136,5 @@ namespace Premotion.Mansion.Http.Streaming
 			client.CancelPendingRequests();
 			client.Dispose();
 		}
-		#endregion
-		#region Properties
-		/// <summary>
-		/// Gets an <see cref="IObservable{T}"/> of <typeparamref name="T"/>.
-		/// </summary>
-		public IObservable<T> Stream
-		{
-			get { return subject.AsObservable(); }
-		}
-		#endregion
-		#region Private Fields
-		private readonly HttpClient client;
-		private readonly Subject<T> subject = new Subject<T>();
-		#endregion
 	}
 }

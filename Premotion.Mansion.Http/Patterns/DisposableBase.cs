@@ -9,20 +9,17 @@ namespace Premotion.Mansion.Http.Patterns
 	/// <remarks>http://blogs.msdn.com/b/blambert/archive/2009/07/24/a-simple-and-totally-thread-safe-implementation-of-idisposable.aspx</remarks>
 	public abstract class DisposableBase : IDisposable
 	{
-		#region Constructors / Destructors
 		/// <summary>
-		/// Finalizes an instance of the DisposableBase class.
+		/// A value which indicates the disposable state. 0 indicates undisposed, 1 indicates disposing or disposed.
 		/// </summary>
-		~DisposableBase()
+		private int disposableState;
+		/// <summary>
+		/// Gets a value indicating whether the object is disposed.
+		/// </summary>
+		protected bool IsDisposed
 		{
-			// The destructor has been called as a result of finalization, indicating that the object
-			// was not disposed of using the Dispose() method. In this case, call the DisposeResources
-			// method with the disposeManagedResources flag set to false, indicating that derived classes
-			// may only release unmanaged resources.
-			DisposeResources(false);
+			get { return Thread.VolatileRead(ref disposableState) == 1; }
 		}
-		#endregion
-		#region IDisposable Members
 		/// <summary>
 		/// Performs application-defined tasks associated with disposing of resources.
 		/// </summary>
@@ -41,16 +38,23 @@ namespace Premotion.Mansion.Http.Patterns
 			// prevent the destructor from being called).
 			GC.SuppressFinalize(this);
 		}
-		#endregion
-		#region Template Methods
+		/// <summary>
+		/// Finalizes an instance of the DisposableBase class.
+		/// </summary>
+		~DisposableBase()
+		{
+			// The destructor has been called as a result of finalization, indicating that the object
+			// was not disposed of using the Dispose() method. In this case, call the DisposeResources
+			// method with the disposeManagedResources flag set to false, indicating that derived classes
+			// may only release unmanaged resources.
+			DisposeResources(false);
+		}
 		/// <summary>
 		/// Dispose resources. Override this method in derived classes. Unmanaged resources should always be released
 		/// when this method is called. Managed resources may only be disposed of if disposeManagedResources is true.
 		/// </summary>
 		/// <param name="disposeManagedResources">A value which indicates whether managed resources may be disposed of.</param>
 		protected abstract void DisposeResources(bool disposeManagedResources);
-		#endregion
-		#region Helper Methods
 		/// <summary>
 		/// Checks whether this objects is already disposed.
 		/// </summary>
@@ -60,21 +64,5 @@ namespace Premotion.Mansion.Http.Patterns
 			if (IsDisposed)
 				throw new ObjectDisposedException(string.Format("{0} is disposed.", GetType().Name));
 		}
-		#endregion
-		#region Properties
-		/// <summary>
-		/// Gets a value indicating whether the object is disposed.
-		/// </summary>
-		protected bool IsDisposed
-		{
-			get { return Thread.VolatileRead(ref disposableState) == 1; }
-		}
-		#endregion
-		#region Private Fields
-		/// <summary>
-		/// A value which indicates the disposable state. 0 indicates undisposed, 1 indicates disposing or disposed.
-		/// </summary>
-		private int disposableState;
-		#endregion
 	}
 }
